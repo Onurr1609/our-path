@@ -78,7 +78,7 @@
 
   // Our Path unlock code (YOU change this)
   // IMPORTANT: set it to something ONLY you know.
-  const OUR_PATH_SECRET_CODE = "07032022"; // example (change it)
+  const OUR_PATH_SECRET_CODE = "070320222"; // example (change it)
 
   // Hint reveal duration
   const HINT_REVEAL_MS = 900
@@ -732,4 +732,5 @@ document.addEventListener('click', function startAudioContext() {
   }
   // Event Listener entfernen, damit es nicht bei jedem Klick neu feuert
   document.removeEventListener('click', startAudioContext);
+
 }, { once: true });
