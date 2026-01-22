@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Our Path 💗</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.minesweeper.css" />
+</head>
+<div class="bg-float" aria-hidden="true"></div>
+<img class="kitty-peek k1" src="assets/kitty.png" alt="" aria-hidden="true">
+<img class="kitty-peek k2" src="assets/kitty.png" alt="" aria-hidden="true">
+
+<body>
+<div class="float-layer" aria-hidden="true">
+  <div class="float-item" style="left:8%;  animation-delay:0s;">💗</div>
+  <div class="float-item" style="left:22%; animation-delay:1.2s;">💞</div>
+  <div class="float-item" style="left:40%; animation-delay:2.3s;">💖</div>
+  <div class="float-item" style="left:63%; animation-delay:0.7s;">💗</div>
+  <div class="float-item" style="left:78%; animation-delay:1.8s;">💞</div>
+  <div class="float-item" style="left:90%; animation-delay:2.9s;">💖</div>
+</div>
+
+  <!-- Background FX -->
+  <div class="bg">
+    <div class="bg__glow"></div>
+    <div class="bg__dots"></div>
+    <div class="bg__floaters" aria-hidden="true"></div>
+  </div>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__dot"></span>
+      <div class="brand__title">OUR PATH</div>
+      <div class="brand__sub">a playable love letter</div>
+    </div>
+
+    <div class="topbar__center">
+      <button class="chip chip--tab is-active" id="tabMinesweeper" type="button">Minesweeper</button>
+      <button class="chip chip--tab" id="tabOurPath" type="button">
+        Our Path <span class="chip__lock" id="ourPathLockLabel">(locked)</span>
+      </button>
+    </div>
+
+    <div class="topbar__actions">
+      <button class="chip" id="btnReset" type="button">Reset</button>
+      <button class="chip" id="btnSound" type="button">Sound</button>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="stage">
+    <!-- MINESWEEPER VIEW -->
+    <section class="view view--active" id="viewMinesweeper" aria-label="Minesweeper">
+      <div class="card card--wide">
+        <div class="card__header">
+          <div class="pill pill--title">MINESWEEPER</div>
+
+          <div class="stats">
+            <div class="stat"><span class="stat__k">Hearts</span><span class="stat__v" id="statHearts">0</span></div>
+            <div class="stat"><span class="stat__k">Hints</span><span class="stat__v" id="statHints">∞</span></div>
+            <div class="stat"><span class="stat__k">Mines</span><span class="stat__v" id="statMines">0</span></div>
+          </div>
+
+          <div class="difficulty">
+            <button class="chip chip--mini is-active" id="btnEasy" type="button">Easy</button>
+            <button class="chip chip--mini" id="btnMedium" type="button">Medium</button>
+            <button class="chip chip--mini" id="btnUltra" type="button">Ultra</button>
+          </div>
+        </div>
+
+        <div class="card__body minesweeper">
+          <div class="ms__toolbar">
+            <div class="ms__left">
+              <div class="ms__label">Minesweeper Date Night 💗</div>
+              <div class="ms__hintline">Hint is available (but only if you say <b>YES</b> 💞)</div>
+            </div>
+
+            <div class="ms__right">
+              <button class="btn btn--hint" id="btnHint" type="button">
+                Hint <span class="btn__heart">♥</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="ms__gridWrap">
+            <div class="ms__grid" id="msGrid" role="grid" aria-label="Minesweeper grid"></div>
+          </div>
+
+          <div class="ms__footer">
+            <div class="ms__tip">Tip: Right-click (or long-press) to place a flag 🚩</div>
+            <div class="ms__status" id="msStatus"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR PATH VIEW (locked until code) -->
+    <section class="view" id="viewOurPath" aria-label="Our Path">
+      <div class="card">
+        <div class="card__header">
+          <div class="pill pill--locked" id="lockPill">LOCKED</div>
+          <div class="mailhead">
+            <div class="mailhead__title">Before you enter…</div>
+            <div class="mailhead__from">From: Onur</div>
+          </div>
+        </div>
+
+        <div class="card__body">
+          <p class="letter">
+            This is a secret little world I made for you.<br/>
+            Enter the code to unlock it. <span class="heart">💗</span>
+          </p>
+
+          <div class="unlockRow">
+            <input class="input" id="codeInput" placeholder="Enter the secret code…" autocomplete="off" />
+            <button class="btn btn--primary" id="btnUnlock" type="button">UNLOCK ✨</button>
+          </div>
+
+          <div class="subhint">Hint: I’ll tell you the code when the time is right.</div>
+          <div class="tiny">• Audio starts only after a click (browser rules).</div>
+
+          <div class="error hidden" id="codeError">Nope… that’s not the code 😘</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sweet modal: Valentine gate for hint / win -->
+  <div class="modal hidden" id="valModal" role="dialog" aria-modal="true">
+    <div class="modal__box">
+      <div class="modal__badge" id="valModalBadge">A tiny question…</div>
+      <div class="modal__title" id="valModalTitle">Do you wanna be my Valentine? 💞</div>
+      <div class="modal__text" id="valModalText">
+        Say <b>YES</b> and I’ll give you a little help… just for less then a second :D.
+      </div>
+
+      <div class="modal__actions">
+        <button class="btn btn--ghost" id="valNo" type="button">No</button>
+        <button class="btn btn--primary" id="valYes" type="button">YES 💗</button>
+      </div>
+
+      <button class="modal__x" id="valClose" aria-label="Close" type="button">×</button>
+    </div>
+  </div>
+
+  <!-- Win modal -->
+  <div class="modal hidden" id="winModal" role="dialog" aria-modal="true">
+    <div class="modal__box">
+      <div class="modal__badge">CLEARED ✨</div>
+      <div class="modal__title">You did it! 💗</div>
+      <div class="modal__text" id="winText">
+        You cleared the board. One tiny question…
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn--ghost" id="winNo" type="button">Not yet</button>
+        <button class="btn btn--primary" id="winYes" type="button">YES 💞</button>
+      </div>
+      <button class="modal__x" id="winClose" aria-label="Close" type="button">×</button>
+    </div>
+  </div>
+
+  <!-- Optional music -->
+  <audio id="bgMusic" loop>
+    <source src="assets/music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
