@@ -1,3 +1,4 @@
+<!-- index.html (CLEAN: only once, no duplicate document) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,28 +13,30 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style.minesweeper.css" />
 </head>
-<div class="bg-float" aria-hidden="true"></div>
-<img class="kitty-peek k1" src="assets/kitty.png" alt="" aria-hidden="true">
-<img class="kitty-peek k2" src="assets/kitty.png" alt="" aria-hidden="true">
 
 <body>
-<div class="float-layer" aria-hidden="true">
-  <div class="float-item" style="left:8%;  animation-delay:0s;">💗</div>
-  <div class="float-item" style="left:22%; animation-delay:1.2s;">💞</div>
-  <div class="float-item" style="left:40%; animation-delay:2.3s;">💖</div>
-  <div class="float-item" style="left:63%; animation-delay:0.7s;">💗</div>
-  <div class="float-item" style="left:78%; animation-delay:1.8s;">💞</div>
-  <div class="float-item" style="left:90%; animation-delay:2.9s;">💖</div>
-</div>
+  <!-- ✅ only ONE audio, NO bgMusic, NO source tags -->
+  <audio id="voiceTrack" preload="auto" src="assets/beauty_and_a_beat_onur.mp3"></audio>
 
-  <!-- Background FX -->
+  <div class="bg-float" aria-hidden="true"></div>
+  <img class="kitty-peek k1" src="assets/hello-kitty.png" alt="" aria-hidden="true">
+  <img class="kitty-peek k2" src="assets/hello-kitty.png" alt="" aria-hidden="true">
+
+  <div class="float-layer" aria-hidden="true">
+    <div class="float-item" style="left:8%;  animation-delay:0s;">💗</div>
+    <div class="float-item" style="left:22%; animation-delay:1.2s;">💞</div>
+    <div class="float-item" style="left:40%; animation-delay:2.3s;">💖</div>
+    <div class="float-item" style="left:63%; animation-delay:0.7s;">💗</div>
+    <div class="float-item" style="left:78%; animation-delay:1.8s;">💞</div>
+    <div class="float-item" style="left:90%; animation-delay:2.9s;">💖</div>
+  </div>
+
   <div class="bg">
     <div class="bg__glow"></div>
     <div class="bg__dots"></div>
     <div class="bg__floaters" aria-hidden="true"></div>
   </div>
 
-  <!-- Top bar -->
   <header class="topbar">
     <div class="brand">
       <span class="brand__dot"></span>
@@ -54,9 +57,7 @@
     </div>
   </header>
 
-  <!-- Main -->
   <main class="stage">
-    <!-- MINESWEEPER VIEW -->
     <section class="view view--active" id="viewMinesweeper" aria-label="Minesweeper">
       <div class="card card--wide">
         <div class="card__header">
@@ -101,7 +102,6 @@
       </div>
     </section>
 
-    <!-- OUR PATH VIEW (locked until code) -->
     <section class="view" id="viewOurPath" aria-label="Our Path">
       <div class="card">
         <div class="card__header">
@@ -112,7 +112,7 @@
           </div>
         </div>
 
-        <div class="card__body">
+        <div class="card__body" id="ourPathBody">
           <p class="letter">
             This is a secret little world I made for you.<br/>
             Enter the code to unlock it. <span class="heart">💗</span>
@@ -132,7 +132,6 @@
     </section>
   </main>
 
-  <!-- Sweet modal: Valentine gate for hint / win -->
   <div class="modal hidden" id="valModal" role="dialog" aria-modal="true">
     <div class="modal__box">
       <div class="modal__badge" id="valModalBadge">A tiny question…</div>
@@ -150,7 +149,6 @@
     </div>
   </div>
 
-  <!-- Win modal -->
   <div class="modal hidden" id="winModal" role="dialog" aria-modal="true">
     <div class="modal__box">
       <div class="modal__badge">CLEARED ✨</div>
@@ -166,12 +164,6 @@
     </div>
   </div>
 
-  <!-- Optional music -->
-  <audio id="bgMusic" loop>
-    <source src="assets/music.mp3" type="audio/mpeg" />
-  </audio>
-
   <script src="script.js"></script>
 </body>
-
 </html>
